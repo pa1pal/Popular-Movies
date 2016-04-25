@@ -1,7 +1,6 @@
 package udacity.pawan.popularmoviesstage1;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,10 +13,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         if (savedInstanceState == null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            MainActivityFragment fragment = new MainActivityFragment();
-            transaction.replace(R.id.container, fragment);
-            transaction.commit();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, MainActivityFragment.newInstance())
+                    .commit();
         }
     }
 

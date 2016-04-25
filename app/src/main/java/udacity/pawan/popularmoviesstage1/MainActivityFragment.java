@@ -10,27 +10,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.Arrays;
-import java.util.List;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import udacity.pawan.popularmoviesstage1.adapter.GridAdapter;
 
 /**
- * A placeholder fragment containing a simple view.
+ * Author:    ZhuWenWu
+ * Version    V1.0
+ * Date:      2015/2/6  14:42.
+ * Description:
+ * Modification  History:
+ * Date         	Author        		Version        	Description
+ * -----------------------------------------------------------------------------------
+ * 2015/2/6        ZhuWenWu            1.0                    1.0
+ * Why & What is modified:
  */
 public class MainActivityFragment extends Fragment {
     public static final int TYPE_LINEAR_LAYOUT = 1;
-    private static final int SPAN_COUNT = 2;
-    @Bind(R.id.rv) RecyclerView recyclerView;
-    protected RecyclerView.LayoutManager layoutManager;
+    public static final int TYPE_GRID_LAYOUT = 2;
+    public static final int TYPE_STAGGERED_GRID_LAYOUT = 3;
+    @Bind(R.id.rv)
+    RecyclerView mRecyclerView;
+
     private int type = TYPE_LINEAR_LAYOUT;
 
-    List<Integer> resourceIds = Arrays.asList(R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher);
-
     public static MainActivityFragment newInstance(int type) {
-        MainActivityFragment fragment= new MainActivityFragment();
+        MainActivityFragment fragment = new MainActivityFragment();
         Bundle args = new Bundle();
         args.putInt("type", type);
         fragment.setArguments(args);
@@ -39,29 +44,36 @@ public class MainActivityFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             type = getArguments().getInt("type", TYPE_LINEAR_LAYOUT);
         }
     }
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        View rootview = inflater.inflate(R.layout.fragment_main, container, false);
-        ButterKnife.bind(this, rootview);
-//        layoutManager = new GridLayoutManager(getActivity(), SPAN_COUNT);
-//        recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setHasFixedSize(true);
 
-        //recyclerView.setAdapter(new GridAdapter(resourceIds));
-        return rootview;
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        ButterKnife.bind(this, rootView);
+        return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), SPAN_COUNT));
-        recyclerView.setAdapter(new GridAdapter(getActivity()));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        mRecyclerView.setAdapter(new GridAdapter(getActivity()));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
+
+    public static Fragment newInstance() {
+        return  new MainActivityFragment();
     }
 }
