@@ -13,18 +13,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import udacity.pawan.popularmoviesstage1.R;
 
-/**
- * Author:    ZhuWenWu
- * Version    V1.0
- * Date:      2015/1/15  18:18.
- * Description:
- * Modification  History:
- * Date         	Author        		Version        	Description
- * -----------------------------------------------------------------------------------
- * 2015/1/15        ZhuWenWu            1.0                    1.0
- * Why & What is modified:
- */
-public class GridAdapter extends RecyclerView.Adapter<GridAdapter.NormalTextViewHolder> {
+public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolder> {
     private final LayoutInflater mLayoutInflater;
     private final Context mContext;
     private String[] mTitles;
@@ -36,27 +25,25 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.NormalTextView
     }
 
     @Override
-    public NormalTextViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new NormalTextViewHolder(mLayoutInflater.inflate(R.layout.recyclerview_item, parent, false));
+    public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new ImageViewHolder(mLayoutInflater.inflate(R.layout.recyclerview_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(NormalTextViewHolder holder, int position) {
-        //holder.mTextView.setText(mTitles[position]);
-
-
+    public void onBindViewHolder(ImageViewHolder holder, int position) {
+        
     }
 
     @Override
     public int getItemCount() {
-        return mTitles.length;
+        return 10;
     }
 
-    public static class NormalTextViewHolder extends RecyclerView.ViewHolder {
+    public static class ImageViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.movie_poster)
         ImageView imageView;
 
-        NormalTextViewHolder(View view) {
+        ImageViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
         }

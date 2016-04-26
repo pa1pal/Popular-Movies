@@ -1,17 +1,7 @@
 <resources>
 
     <string-array name="urls">
-        <item>http://api.learn2crack.com/android/images/donut.png</item>
-        <item>http://api.learn2crack.com/android/images/eclair.png</item>
-        <item>http://api.learn2crack.com/android/images/eclair.png</item>
-        <item>http://api.learn2crack.com/android/images/eclair.png</item>
-        <item>http://api.learn2crack.com/android/images/eclair.png</item>
-        <item>http://api.learn2crack.com/android/images/eclair.png</item>
-        <item>http://api.learn2crack.com/android/images/eclair.png</item>
-        <item>http://api.learn2crack.com/android/images/eclair.png</item>
-        <item>http://api.learn2crack.com/android/images/eclair.png</item>
-        <item>http://api.learn2crack.com/android/images/eclair.png</item>
-        <item>http://api.learn2crack.com/android/images/eclair.png</item>
+
     </string-array>
     <string name="app_name">Popular Movies Stage 1</string>
     <string name="action_settings">Settings</string>

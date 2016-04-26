@@ -1,5 +1,4 @@
 package udacity.pawan.popularmoviesstage1;
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,17 +13,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import udacity.pawan.popularmoviesstage1.adapter.GridAdapter;
 
-/**
- * Author:    ZhuWenWu
- * Version    V1.0
- * Date:      2015/2/6  14:42.
- * Description:
- * Modification  History:
- * Date         	Author        		Version        	Description
- * -----------------------------------------------------------------------------------
- * 2015/2/6        ZhuWenWu            1.0                    1.0
- * Why & What is modified:
- */
 public class MainActivityFragment extends Fragment {
     public static final int TYPE_LINEAR_LAYOUT = 1;
     public static final int TYPE_GRID_LAYOUT = 2;
