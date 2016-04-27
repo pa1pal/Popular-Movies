@@ -15,13 +15,17 @@ import udacity.pawan.popularmoviesstage1.R;
 
 public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolder> {
     private final LayoutInflater mLayoutInflater;
-    private final Context mContext;
+    private Context mContext;
     private String[] mTitles;
 
     public GridAdapter(Context context) {
         mTitles = context.getResources().getStringArray(R.array.urls);
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
+    }
+
+    public interface mClickListener {
+        public void mClick(View v, int position);
     }
 
     @Override
@@ -31,7 +35,6 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolde
 
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
-        
     }
 
     @Override
@@ -39,7 +42,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolde
         return 10;
     }
 
-    public static class ImageViewHolder extends RecyclerView.ViewHolder {
+    public class ImageViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.movie_poster)
         ImageView imageView;
 
@@ -51,6 +54,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolde
         @OnClick(R.id.cv)
         void onItemClick() {
             Log.d("NormalTextViewHolder", "onClick--> position = " + getPosition());
+           // Intent details = new Intent();
         }
     }
 }

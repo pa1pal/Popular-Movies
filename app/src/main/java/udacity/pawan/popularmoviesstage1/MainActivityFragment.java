@@ -1,4 +1,5 @@
 package udacity.pawan.popularmoviesstage1;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,9 +12,10 @@ import android.view.ViewGroup;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import udacity.pawan.popularmoviesstage1.Utils.RecyclerItemClickListner;
 import udacity.pawan.popularmoviesstage1.adapter.GridAdapter;
 
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragment extends Fragment implements RecyclerItemClickListner.OnItemClickListener {
     public static final int TYPE_LINEAR_LAYOUT = 1;
     public static final int TYPE_GRID_LAYOUT = 2;
     public static final int TYPE_STAGGERED_GRID_LAYOUT = 3;
@@ -51,6 +53,7 @@ public class MainActivityFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListner(getActivity(), this));
         mRecyclerView.setAdapter(new GridAdapter(getActivity()));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
     }
@@ -63,5 +66,17 @@ public class MainActivityFragment extends Fragment {
 
     public static Fragment newInstance() {
         return  new MainActivityFragment();
+    }
+
+
+    @Override
+    public void onItemClick(View childView, int position) {
+        Intent intent = new Intent(getActivity(), MovieDetails.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onItemLongPress(View childView, int position) {
+
     }
 }
