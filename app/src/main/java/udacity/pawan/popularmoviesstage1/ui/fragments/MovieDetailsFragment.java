@@ -1,4 +1,4 @@
-package udacity.pawan.popularmoviesstage1.fragments;
+package udacity.pawan.popularmoviesstage1.ui.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

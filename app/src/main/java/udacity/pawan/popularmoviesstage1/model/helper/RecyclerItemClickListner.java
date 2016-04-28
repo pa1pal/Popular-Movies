@@ -1,4 +1,4 @@
-package udacity.pawan.popularmoviesstage1.Utils;
+package udacity.pawan.popularmoviesstage1.model.helper;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

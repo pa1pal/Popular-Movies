@@ -1,4 +1,4 @@
-package udacity.pawan.popularmoviesstage1.fragments;
+package udacity.pawan.popularmoviesstage1.ui.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,10 +12,10 @@ import android.view.ViewGroup;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import udacity.pawan.popularmoviesstage1.MovieDetails;
+import udacity.pawan.popularmoviesstage1.ui.MovieDetails;
 import udacity.pawan.popularmoviesstage1.R;
-import udacity.pawan.popularmoviesstage1.Utils.RecyclerItemClickListner;
-import udacity.pawan.popularmoviesstage1.adapter.GridAdapter;
+import udacity.pawan.popularmoviesstage1.model.helper.RecyclerItemClickListner;
+import udacity.pawan.popularmoviesstage1.model.adapter.GridAdapter;
 
 public class MainActivityFragment extends Fragment implements RecyclerItemClickListner.OnItemClickListener {
     public static final int TYPE_LINEAR_LAYOUT = 1;

@@ -1,4 +1,4 @@
-package udacity.pawan.popularmoviesstage1.adapter;
+package udacity.pawan.popularmoviesstage1.model.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

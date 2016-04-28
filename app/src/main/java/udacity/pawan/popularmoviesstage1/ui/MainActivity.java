@@ -1,11 +1,12 @@
-package udacity.pawan.popularmoviesstage1;
+package udacity.pawan.popularmoviesstage1.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import udacity.pawan.popularmoviesstage1.fragments.MainActivityFragment;
+import udacity.pawan.popularmoviesstage1.R;
+import udacity.pawan.popularmoviesstage1.ui.fragments.MainActivityFragment;
 
 public class MainActivity extends AppCompatActivity {
 
