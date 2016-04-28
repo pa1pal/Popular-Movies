@@ -2,6 +2,8 @@ package udacity.pawan.popularmoviesstage1;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import udacity.pawan.popularmoviesstage1.fragments.MovieDetailsFragment;
+
 public class MovieDetails extends AppCompatActivity {
 
     private final String LOG_TAG = MovieDetails.class.getSimpleName();

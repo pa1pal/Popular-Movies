@@ -1,10 +1,12 @@
-package udacity.pawan.popularmoviesstage1;
+package udacity.pawan.popularmoviesstage1.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import udacity.pawan.popularmoviesstage1.R;
 
 /**
  * Created by pa1pal on 27/4/16.

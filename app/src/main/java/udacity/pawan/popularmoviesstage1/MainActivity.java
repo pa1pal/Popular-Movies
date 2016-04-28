@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import udacity.pawan.popularmoviesstage1.fragments.MainActivityFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

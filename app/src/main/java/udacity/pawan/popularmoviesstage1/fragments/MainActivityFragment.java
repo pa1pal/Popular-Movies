@@ -1,4 +1,4 @@
-package udacity.pawan.popularmoviesstage1;
+package udacity.pawan.popularmoviesstage1.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import udacity.pawan.popularmoviesstage1.MovieDetails;
+import udacity.pawan.popularmoviesstage1.R;
 import udacity.pawan.popularmoviesstage1.Utils.RecyclerItemClickListner;
 import udacity.pawan.popularmoviesstage1.adapter.GridAdapter;
 
