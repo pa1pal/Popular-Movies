@@ -6,6 +6,7 @@ package udacity.pawan.popularmoviesstage1.model.helper;
 public class Constants {
     public static final class HTTP {
         public static final String BASE_URL = "http://api.themoviedb.org/3";
+        private static final String IMAGE_POSTER_BASE_URL = "http://image.tmdb.org/t/p/w500";
     }
 
     public static final class REFERENCE {

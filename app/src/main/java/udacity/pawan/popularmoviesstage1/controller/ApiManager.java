@@ -1,10 +1,7 @@
 package udacity.pawan.popularmoviesstage1.controller;
 
-import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import udacity.pawan.popularmoviesstage1.model.PopularMovies;
 import udacity.pawan.popularmoviesstage1.model.callback.MovieService;
 import udacity.pawan.popularmoviesstage1.model.helper.Constants;
 
@@ -26,9 +23,9 @@ public class ApiManager {
         return movieService;
     }
 
-    public void getAllMovies(String categories, int page, String api_key, Callback<PopularMovies> callback){
-        Call<PopularMovies> moviecall = movieService.getAllMovies(categories, page);
-        moviecall.enqueue(callback);
-    }
+//    public void getAllMovies( Callback<PopularMovies> callback){
+//        Call<PopularMovies> moviecall = movieService.getAllMovies();
+//        moviecall.enqueue(callback);
+//    }
 
 }
