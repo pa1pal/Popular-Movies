@@ -15,8 +15,6 @@ public class PopularMovies {
     @SerializedName("total_results")
     private long totalResults;
 
-
-
     @SerializedName("total_pages")
     private int totalPages;
 

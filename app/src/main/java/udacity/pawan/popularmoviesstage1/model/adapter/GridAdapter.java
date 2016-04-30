@@ -8,15 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import udacity.pawan.popularmoviesstage1.R;
+import udacity.pawan.popularmoviesstage1.model.Result;
 
 public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolder> {
     private final LayoutInflater mLayoutInflater;
     private Context mContext;
     private String[] mTitles;
+    private List<Result> mResult;
 
     public GridAdapter(Context context) {
         mTitles = context.getResources().getStringArray(R.array.urls);
@@ -35,6 +39,8 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolde
 
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
+        Result movies = mResult.get(position);
+       // Picasso.with(holder.itemView.getContext()).load()
     }
 
     @Override
