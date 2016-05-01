@@ -17,6 +17,7 @@
             android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
             app:contentScrim="@color/cardview_dark_background"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 

@@ -1,6 +1,7 @@
 package udacity.pawan.popularmoviesstage1.ui.fragments;
 
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,9 @@ public class MovieDetailsFragment extends Fragment {
     @Bind(R.id.plot) TextView mPlot;
     @Bind(R.id.rating) TextView mRating;
     @Bind(R.id.rdate) TextView mReleaseDate;
+
+    @Bind(R.id.collapsingToolbar)
+    CollapsingToolbarLayout collapsingToolbarLayout;
 
     public MovieDetailsFragment(Result result){
         mMovieDetails = result;

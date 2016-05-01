@@ -1,6 +1,8 @@
 package udacity.pawan.popularmoviesstage1.ui.fragments;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -32,6 +34,7 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
     public  final String LOG_TAG = getClass().getSimpleName();
     private  GridAdapter gridAdapter;
     private ApiManager apiManager;
+    String category;
     @Bind(R.id.rv)
     RecyclerView mRecyclerView;
 
@@ -62,6 +65,7 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             type = getArguments().getInt("type", TYPE_LINEAR_LAYOUT);
         }
@@ -70,6 +74,7 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, rootView);
         return rootView;
@@ -83,7 +88,7 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
         mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListner(getActivity(), this));
 
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        loadPopuparMovies();
+        loadPopuparMovies(category);
     }
 
     @Override
@@ -97,10 +102,13 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
     }
 
 
-    public void loadPopuparMovies(){
-        apiManager =  new ApiManager();
+    public void loadPopuparMovies(String category){
 
-        Call<PopularMovies> popularMoviesCall = apiManager.getMovieService().getAllMovies();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        category = sharedPreferences.getString("popular", "top_rated");
+
+        apiManager =  new ApiManager();
+        Call<PopularMovies> popularMoviesCall = apiManager.getMovieService().getAllMovies(category);
         popularMoviesCall.enqueue(new Callback<PopularMovies>() {
             @Override
             public void onResponse(Call<PopularMovies> call, Response<PopularMovies> response) {
