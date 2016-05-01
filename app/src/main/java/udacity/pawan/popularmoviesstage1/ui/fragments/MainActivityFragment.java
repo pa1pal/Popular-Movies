@@ -11,30 +11,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
+import com.google.gson.Gson;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import udacity.pawan.popularmoviesstage1.R;
 import udacity.pawan.popularmoviesstage1.controller.ApiManager;
 import udacity.pawan.popularmoviesstage1.model.PopularMovies;
-import udacity.pawan.popularmoviesstage1.ui.MovieDetails;
-import udacity.pawan.popularmoviesstage1.R;
-import udacity.pawan.popularmoviesstage1.model.helper.RecyclerItemClickListner;
 import udacity.pawan.popularmoviesstage1.model.adapter.GridAdapter;
+import udacity.pawan.popularmoviesstage1.model.helper.RecyclerItemClickListner;
+import udacity.pawan.popularmoviesstage1.ui.MovieDetails;
 
 public class MainActivityFragment extends Fragment implements RecyclerItemClickListner.OnItemClickListener {
     public static final int TYPE_LINEAR_LAYOUT = 1;
     public static final int TYPE_GRID_LAYOUT = 2;
     public static final int TYPE_STAGGERED_GRID_LAYOUT = 3;
+    public  final String LOG_TAG = getClass().getSimpleName();
     private  GridAdapter gridAdapter;
     private ApiManager apiManager;
     @Bind(R.id.rv)
     RecyclerView mRecyclerView;
 
     private int type = TYPE_LINEAR_LAYOUT;
+    private PopularMovies mPopularMovies;
 
     public static MainActivityFragment newInstance(int type) {
         MainActivityFragment fragment = new MainActivityFragment();
@@ -45,45 +47,25 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
     }
 
     @Override
+    public void onItemClick(View childView, int position) {
+        Intent intent = new Intent(getActivity(), MovieDetails.class);
+        intent.putExtra("MOVIE_DETAILS", (new Gson()).toJson(mPopularMovies.getResults().get(position)));
+        startActivity(intent);
+    }
+
+    @Override
+    public void onItemLongPress(View childView, int position) {
+
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             type = getArguments().getInt("type", TYPE_LINEAR_LAYOUT);
         }
-
-        apiManager =  new ApiManager();
-        Call<List<PopularMovies>> listCall = apiManager.getMovieService().getAllMovies();
-        listCall.enqueue(new Callback<List<PopularMovies>>() {
-            @Override
-            public void onResponse(Call<List<PopularMovies>> call, Response<List<PopularMovies>> response) {
-                if (response.isSuccessful()) {
-                    List<PopularMovies> popularMoviesList = response.body();
-                    for (int i=0; i<popularMoviesList.size(); i++)
-                    {
-                        PopularMovies popularMovies  = popularMoviesList.get(i);
-                        gridAdapter.addMovies(popularMovies);
-                    }
-                }else{
-                    int sc = response.code();
-                    switch (sc){
-                        case 400:
-                            Log.e("Error 400", "Bad Request");
-                            break;
-                        case 404:
-                            Log.e("Error 404", "Not Found");
-                            break;
-                        default:
-                            Log.e("Error", "Generic Error");
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<PopularMovies>> call, Throwable t) {
-
-            }
-        });
+        mPopularMovies = new PopularMovies();
     }
 
     @Override
@@ -99,10 +81,9 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListner(getActivity(), this));
-        gridAdapter = new GridAdapter(getActivity());
 
-        mRecyclerView.setAdapter(gridAdapter);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        loadPopuparMovies();
     }
 
     @Override
@@ -116,14 +97,25 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
     }
 
 
-    @Override
-    public void onItemClick(View childView, int position) {
-        Intent intent = new Intent(getActivity(), MovieDetails.class);
-        startActivity(intent);
-    }
+    public void loadPopuparMovies(){
+        apiManager =  new ApiManager();
 
-    @Override
-    public void onItemLongPress(View childView, int position) {
+        Call<PopularMovies> popularMoviesCall = apiManager.getMovieService().getAllMovies();
+        popularMoviesCall.enqueue(new Callback<PopularMovies>() {
+            @Override
+            public void onResponse(Call<PopularMovies> call, Response<PopularMovies> response) {
+                if(response.isSuccessful()){
+                    mPopularMovies = response.body();
+                    gridAdapter = new GridAdapter(getActivity(),mPopularMovies.getResults());
+                    mRecyclerView.setAdapter(gridAdapter);
+                    Log.d(LOG_TAG,mPopularMovies.getResults().get(2).getOriginalTitle());
+                }
+            }
 
+            @Override
+            public void onFailure(Call<PopularMovies> call, Throwable t) {
+
+            }
+        });
     }
 }

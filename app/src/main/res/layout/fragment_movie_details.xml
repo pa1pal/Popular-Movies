@@ -21,6 +21,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
+                android:id="@+id/iv_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
@@ -40,7 +41,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-<include layout="@layout/detail_items"></include>
+    <include layout="@layout/detail_items"></include>
 </android.support.design.widget.CoordinatorLayout>
 
 

@@ -1,8 +1,12 @@
 package udacity.pawan.popularmoviesstage1.ui;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+
 import udacity.pawan.popularmoviesstage1.R;
+import udacity.pawan.popularmoviesstage1.model.Result;
 import udacity.pawan.popularmoviesstage1.ui.fragments.MovieDetailsFragment;
 
 public class MovieDetails extends AppCompatActivity {
@@ -13,8 +17,12 @@ public class MovieDetails extends AppCompatActivity {
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_details);
+
+        final Intent intent = getIntent();
+        Result result = (new Gson()).fromJson(intent.getStringExtra("MOVIE_DETAILS"), Result.class);
+
         if (savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().add(R.id.container, new MovieDetailsFragment()).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.container, new MovieDetailsFragment(result)).commit();
         }
     }
 }

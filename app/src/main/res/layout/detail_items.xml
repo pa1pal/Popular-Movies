@@ -19,10 +19,10 @@
             app:cardCornerRadius="5dp">
 
             <TextView
+                android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Movie Title"
-                android:textColor="@color/colorAccent"
                 android:textSize="20sp" />
         </android.support.v7.widget.CardView>
 
@@ -35,10 +35,10 @@
             app:cardCornerRadius="5dp">
 
             <TextView
+                android:id="@+id/plot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Plot"
-                android:textColor="@color/colorAccent"
                 android:textSize="20sp" />
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -50,10 +50,10 @@
             app:cardCornerRadius="5dp">
 
             <TextView
+                android:id="@+id/rating"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="User Rating"
-                android:textColor="@color/colorAccent"
                 android:textSize="20sp" />
         </android.support.v7.widget.CardView>
 
@@ -66,10 +66,10 @@
             app:cardCornerRadius="5dp">
 
             <TextView
+                android:id="@+id/rdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Release Date"
-                android:textColor="@color/colorAccent"
                 android:textSize="20sp"/>
         </android.support.v7.widget.CardView>
 
