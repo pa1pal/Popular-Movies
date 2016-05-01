@@ -3,7 +3,6 @@ package udacity.pawan.popularmoviesstage1.controller;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import udacity.pawan.popularmoviesstage1.model.callback.MovieService;
-import udacity.pawan.popularmoviesstage1.model.helper.Constants;
 
 /**
  * Created by pa1pal on 30/4/16.
@@ -14,7 +13,7 @@ public class ApiManager {
     public MovieService getMovieService(){
         if (movieService == null) {
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(Constants.HTTP.BASE_URL)
+                    .baseUrl("http://api.themoviedb.org/3/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 

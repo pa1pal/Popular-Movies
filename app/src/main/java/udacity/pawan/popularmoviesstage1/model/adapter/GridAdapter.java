@@ -45,13 +45,19 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolde
 
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
-        PopularMovies movies = null;
+        PopularMovies movies = mResult.get(position);
         Picasso.with(holder.itemView.getContext()).load("http://image.tmdb.org/t/p/w500" + movies.getResults().get(position).getPosterPath()).into(holder.imageView);
     }
 
     @Override
     public int getItemCount() {
         return mResult.size();
+    }
+
+    public void addMovies(PopularMovies movies)
+    {
+        mResult.add(movies);
+        notifyDataSetChanged();
     }
 
     public class ImageViewHolder extends RecyclerView.ViewHolder {

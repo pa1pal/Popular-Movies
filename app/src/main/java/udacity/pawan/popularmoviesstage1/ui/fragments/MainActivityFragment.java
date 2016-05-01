@@ -6,12 +6,20 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import udacity.pawan.popularmoviesstage1.controller.ApiManager;
+import udacity.pawan.popularmoviesstage1.model.PopularMovies;
 import udacity.pawan.popularmoviesstage1.ui.MovieDetails;
 import udacity.pawan.popularmoviesstage1.R;
 import udacity.pawan.popularmoviesstage1.model.helper.RecyclerItemClickListner;
@@ -21,6 +29,8 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
     public static final int TYPE_LINEAR_LAYOUT = 1;
     public static final int TYPE_GRID_LAYOUT = 2;
     public static final int TYPE_STAGGERED_GRID_LAYOUT = 3;
+    private  GridAdapter gridAdapter;
+    private ApiManager apiManager;
     @Bind(R.id.rv)
     RecyclerView mRecyclerView;
 
@@ -41,6 +51,39 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
         if (getArguments() != null) {
             type = getArguments().getInt("type", TYPE_LINEAR_LAYOUT);
         }
+
+        apiManager =  new ApiManager();
+        Call<List<PopularMovies>> listCall = apiManager.getMovieService().getAllMovies();
+        listCall.enqueue(new Callback<List<PopularMovies>>() {
+            @Override
+            public void onResponse(Call<List<PopularMovies>> call, Response<List<PopularMovies>> response) {
+                if (response.isSuccessful()) {
+                    List<PopularMovies> popularMoviesList = response.body();
+                    for (int i=0; i<popularMoviesList.size(); i++)
+                    {
+                        PopularMovies popularMovies  = popularMoviesList.get(i);
+                        gridAdapter.addMovies(popularMovies);
+                    }
+                }else{
+                    int sc = response.code();
+                    switch (sc){
+                        case 400:
+                            Log.e("Error 400", "Bad Request");
+                            break;
+                        case 404:
+                            Log.e("Error 404", "Not Found");
+                            break;
+                        default:
+                            Log.e("Error", "Generic Error");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<PopularMovies>> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override
@@ -56,7 +99,9 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListner(getActivity(), this));
-        mRecyclerView.setAdapter(new GridAdapter(getActivity()));
+        gridAdapter = new GridAdapter(getActivity());
+
+        mRecyclerView.setAdapter(gridAdapter);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
