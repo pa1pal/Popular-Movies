@@ -70,6 +70,9 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
             type = getArguments().getInt("type", TYPE_LINEAR_LAYOUT);
         }
         mPopularMovies = new PopularMovies();
+
+
+
     }
 
     @Override
@@ -77,6 +80,9 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, rootView);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        category = sharedPreferences.getString(getString(R.string.category_key), getString(R.string.pref_default));
+
         return rootView;
     }
 
@@ -88,7 +94,7 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
         mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListner(getActivity(), this));
 
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        loadPopuparMovies(category);
+        loadPopuparMovies();
     }
 
     @Override
@@ -97,16 +103,12 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
         ButterKnife.unbind(this);
     }
 
+
     public static Fragment newInstance() {
         return  new MainActivityFragment();
     }
 
-
-    public void loadPopuparMovies(String category){
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        category = sharedPreferences.getString("popular", "top_rated");
-
+    public void loadPopuparMovies(){
         apiManager =  new ApiManager();
         Call<PopularMovies> popularMoviesCall = apiManager.getMovieService().getAllMovies(category);
         popularMoviesCall.enqueue(new Callback<PopularMovies>() {

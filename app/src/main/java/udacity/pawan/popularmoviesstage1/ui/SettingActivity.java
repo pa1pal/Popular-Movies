@@ -1,5 +1,6 @@
 package udacity.pawan.popularmoviesstage1.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -44,5 +45,12 @@ public class SettingActivity extends PreferenceActivity implements Preference.On
             preference.setSummary(stringValue);
         }
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, MainActivity.class));
+
     }
 }
