@@ -73,5 +73,14 @@
                 android:textSize="20sp"/>
         </android.support.v7.widget.CardView>
 
+        <ListView
+            android:id="@+id/trailersList"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+
+        <ListView
+            android:id="@+id/reviewsList"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"/>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
