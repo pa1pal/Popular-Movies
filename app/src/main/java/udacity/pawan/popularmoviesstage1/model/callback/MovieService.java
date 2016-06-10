@@ -14,4 +14,10 @@ public interface MovieService {
 //    Call<PopularMovies> getAllMovies(@Path("categories") String categories, @Query("page") int page_no );
     @GET("movie/{category}?api_key=" + BuildConfig.MOVIE_API_KEY)
     Call<PopularMovies> getAllMovies(@Path("category") String category);
+
+    @GET("movie/{id}/videos?api_key=" + BuildConfig.MOVIE_API_KEY)
+    Call<PopularMovies> getTrailers(@Path("id") String id);
+
+    @GET("movie/{id}/reviews?api_key=" + BuildConfig.MOVIE_API_KEY)
+    Call<PopularMovies> getReviews(@Path("id") String id);
 }

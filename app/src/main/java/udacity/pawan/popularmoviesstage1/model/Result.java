@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class Result {
 
+
     @SerializedName("poster_path")
     private String posterPath;
     private Boolean adult;
