@@ -1,60 +1,95 @@
 package udacity.pawan.popularmoviesstage1.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by pa1pal on 6/10/16.
  */
 public class ReviewResults {
-    private String content;
-
+    @SerializedName("id")
+    @Expose
     private String id;
-
+    @SerializedName("author")
+    @Expose
     private String author;
-
+    @SerializedName("content")
+    @Expose
+    private String content;
+    @SerializedName("url")
+    @Expose
     private String url;
 
-    public String getContent ()
-    {
-        return content;
-    }
-
-    public void setContent (String content)
-    {
-        this.content = content;
-    }
-
-    public String getId ()
-    {
+    /**
+     *
+     * @return
+     * The id
+     */
+    public String getId() {
         return id;
     }
 
-    public void setId (String id)
-    {
+    /**
+     *
+     * @param id
+     * The id
+     */
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getAuthor ()
-    {
+    /**
+     *
+     * @return
+     * The author
+     */
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor (String author)
-    {
+    /**
+     *
+     * @param author
+     * The author
+     */
+    public void setAuthor(String author) {
         this.author = author;
     }
 
-    public String getUrl ()
-    {
+    /**
+     *
+     * @return
+     * The content
+     */
+    public String getContent() {
+        return content;
+    }
+
+    /**
+     *
+     * @param content
+     * The content
+     */
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    /**
+     *
+     * @return
+     * The url
+     */
+    public String getUrl() {
         return url;
     }
 
-    public void setUrl (String url)
-    {
+    /**
+     *
+     * @param url
+     * The url
+     */
+    public void setUrl(String url) {
         this.url = url;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [content = "+content+", id = "+id+", author = "+author+", url = "+url+"]";
-    }
 }
