@@ -18,7 +18,7 @@ public class Reviews {
     private Integer page;
     @SerializedName("results")
     @Expose
-    private List<Result> results = new ArrayList<Result>();
+    private List<ReviewResults> results = new ArrayList<ReviewResults>();
     @SerializedName("total_pages")
     @Expose
     private Integer totalPages;
@@ -67,7 +67,7 @@ public class Reviews {
      * @return
      * The results
      */
-    public List<Result> getResults() {
+    public List<ReviewResults> getReviewsResults() {
         return results;
     }
 
@@ -76,7 +76,7 @@ public class Reviews {
      * @param results
      * The results
      */
-    public void setResults(List<Result> results) {
+    public void setResults(List<ReviewResults> results) {
         this.results = results;
     }
 

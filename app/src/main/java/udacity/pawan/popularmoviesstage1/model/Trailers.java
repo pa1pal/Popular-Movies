@@ -42,7 +42,7 @@ public class Trailers  {
          * @return
          * The results
          */
-        public List<VideoResults> getResults() {
+        public List<VideoResults> getVideoResults() {
             return results;
         }
 

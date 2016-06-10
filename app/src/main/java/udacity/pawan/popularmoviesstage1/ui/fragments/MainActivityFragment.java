@@ -53,12 +53,12 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
     public void onItemClick(View childView, int position) {
         Intent intent = new Intent(getActivity(), MovieDetails.class);
         intent.putExtra("MOVIE_DETAILS", (new Gson()).toJson(mPopularMovies.getResults().get(position)));
+        intent.putExtra("MOVIE_ID",Integer.parseInt((new Gson()).toJson(mPopularMovies.getResults().get(position).getId())));
         startActivity(intent);
     }
 
     @Override
     public void onItemLongPress(View childView, int position) {
-
     }
 
     @Override
@@ -70,9 +70,6 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
             type = getArguments().getInt("type", TYPE_LINEAR_LAYOUT);
         }
         mPopularMovies = new PopularMovies();
-
-
-
     }
 
     @Override
@@ -102,7 +99,6 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
-
 
     public static Fragment newInstance() {
         return  new MainActivityFragment();

@@ -10,6 +10,7 @@
         android:id="@+id/review_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#fff"
         android:padding="10dp"
         />
 
@@ -17,6 +18,7 @@
         android:id="@+id/review_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#fff"
         android:padding="10dp"
         />
 

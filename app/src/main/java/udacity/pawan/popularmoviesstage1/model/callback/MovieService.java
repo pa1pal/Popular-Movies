@@ -5,6 +5,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import udacity.pawan.popularmoviesstage1.BuildConfig;
 import udacity.pawan.popularmoviesstage1.model.PopularMovies;
+import udacity.pawan.popularmoviesstage1.model.Reviews;
+import udacity.pawan.popularmoviesstage1.model.Trailers;
 
 /**
  * Created by pa1pal on 29/4/16.
@@ -16,8 +18,8 @@ public interface MovieService {
     Call<PopularMovies> getAllMovies(@Path("category") String category);
 
     @GET("movie/{id}/videos?api_key=" + BuildConfig.MOVIE_API_KEY)
-    Call<PopularMovies> getTrailers(@Path("id") String id);
+    Call<Trailers> getTrailers(@Path("id") int id);
 
     @GET("movie/{id}/reviews?api_key=" + BuildConfig.MOVIE_API_KEY)
-    Call<PopularMovies> getReviews(@Path("id") String id);
+    Call<Reviews> getReviews(@Path("id") int id);
 }

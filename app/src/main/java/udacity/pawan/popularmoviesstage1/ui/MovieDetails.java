@@ -20,9 +20,10 @@ public class MovieDetails extends AppCompatActivity {
 
         final Intent intent = getIntent();
         Result result = (new Gson()).fromJson(intent.getStringExtra("MOVIE_DETAILS"), Result.class);
+        int movieid = intent.getIntExtra("MOVIE_ID", 293660);
 
         if (savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().add(R.id.container, new MovieDetailsFragment(result)).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.container, new MovieDetailsFragment(result, movieid)).commit();
         }
     }
 }
