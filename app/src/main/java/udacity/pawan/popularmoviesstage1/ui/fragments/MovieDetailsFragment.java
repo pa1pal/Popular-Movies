@@ -156,7 +156,7 @@ public class MovieDetailsFragment extends Fragment {
                 if(response.isSuccessful()){
                     mReviews = response.body();
                     mReviewAdapter = new ReviewAdapter(getActivity(), mReviews.getReviewsResults());
-                    //mReviewAdapter.notifyDataSetChanged();
+                    mReviewAdapter.notifyDataSetChanged();
                     // TODO : setAdapter not working
                     mReviewsList.setAdapter(mReviewAdapter);
                     //Log.d(LOG_TAG,mPopularMovies.getResults().get(2).getOriginalTitle());

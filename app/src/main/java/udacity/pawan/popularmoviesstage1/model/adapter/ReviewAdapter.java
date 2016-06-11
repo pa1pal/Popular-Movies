@@ -41,6 +41,9 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         if (mReviewResult.get(position).getContent() != null) {
             holder.contentView.setText(mReviewResult.get(position).getContent());
         }
+        else
+        holder.contentView.setText("Reviews not available");
+
 
         if (mReviewResult.get(position).getAuthor() != null) {
             holder.authorView.setText(mReviewResult.get(position).getAuthor());

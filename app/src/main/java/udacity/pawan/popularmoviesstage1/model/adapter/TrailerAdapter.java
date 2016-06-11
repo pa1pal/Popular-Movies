@@ -44,8 +44,6 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.ViewHold
         }
     }
 
-
-
     @Override
     public int getItemCount() {
         return mVideoResult.size();
