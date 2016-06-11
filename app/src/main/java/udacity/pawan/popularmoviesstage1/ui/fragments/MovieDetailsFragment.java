@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,8 +59,8 @@ public class MovieDetailsFragment extends Fragment {
     @Bind(R.id.collapsingToolbar)
     CollapsingToolbarLayout collapsingToolbarLayout;
 
-    ListView mTrailersList;
-    ListView mReviewsList;
+    RecyclerView mTrailersList;
+    RecyclerView mReviewsList;
     private int type = TYPE_LINEAR_LAYOUT;
 
     public MovieDetailsFragment(Result result, int mid){
@@ -82,12 +85,12 @@ public class MovieDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootview = inflater.inflate(R.layout.fragment_movie_details, container, false);
 
-        mTrailersList = (ListView) rootview.findViewById(R.id.trailersList);
-        mReviewsList = (ListView) rootview.findViewById(R.id.reviewsList);
+        mTrailersList = (RecyclerView) rootview.findViewById(R.id.trailersList);
+        mReviewsList = (RecyclerView) rootview.findViewById(R.id.reviewsList);
         ButterKnife.bind(this, rootview);
 
-        mTrailerAdapter = new TrailerAdapter(getActivity(),mTrailers.getVideoResults());
-        mReviewAdapter = new ReviewAdapter(getActivity(), mReviews.getReviewsResults());
+//        mTrailerAdapter = new TrailerAdapter(getActivity(),mTrailers.getVideoResults());
+//        mReviewAdapter = new ReviewAdapter(getActivity(), mReviews.getReviewsResults());
 
         Picasso.with(getActivity())
                 .load("http://image.tmdb.org/t/p/w500" + mMovieDetails.getPosterPath())
@@ -106,6 +109,8 @@ public class MovieDetailsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mTrailersList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mReviewsList.setLayoutManager(new LinearLayoutManager(getActivity()));
         loadReviews();
         loadTrailers();
 
@@ -151,7 +156,7 @@ public class MovieDetailsFragment extends Fragment {
                 if(response.isSuccessful()){
                     mReviews = response.body();
                     mReviewAdapter = new ReviewAdapter(getActivity(), mReviews.getReviewsResults());
-                    mReviewAdapter.notifyDataSetChanged();
+                    //mReviewAdapter.notifyDataSetChanged();
                     // TODO : setAdapter not working
                     mReviewsList.setAdapter(mReviewAdapter);
                     //Log.d(LOG_TAG,mPopularMovies.getResults().get(2).getOriginalTitle());

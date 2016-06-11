@@ -1,6 +1,8 @@
 package udacity.pawan.popularmoviesstage1.model.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,53 +12,55 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import udacity.pawan.popularmoviesstage1.R;
 import udacity.pawan.popularmoviesstage1.model.ReviewResults;
 import udacity.pawan.popularmoviesstage1.model.Reviews;
 
 
-public class ReviewAdapter extends ArrayAdapter<Reviews> {
+public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder>{
 
     private List<ReviewResults> mReviewResult;
     private Context mContext;
 
-    public ReviewAdapter(Context context, List<ReviewResults> results) {
-
-        super(context, 0);
+    public ReviewAdapter(Activity context, List<ReviewResults> results) {
         mContext = context;
         mReviewResult = results;
     }
 
-    public static class ViewHolder {
-        public final TextView contentView;
-        public final TextView authorView;
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View row = LayoutInflater.from(parent.getContext()).inflate(R.layout.review_list_item, null, false);
+        //return new ImageViewHolder(mLayoutInflater.inflate(R.layout.recyclerview_item, parent, false));
+        return new ViewHolder(row);
+    }
 
-        public ViewHolder(View view) {
-            authorView = (TextView) view.findViewById(R.id.review_author);
-            contentView = (TextView) view.findViewById(R.id.review_content);
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        if (mReviewResult.get(position).getContent() != null) {
+            holder.contentView.setText(mReviewResult.get(position).getContent());
+        }
+
+        if (mReviewResult.get(position).getAuthor() != null) {
+            holder.authorView.setText(mReviewResult.get(position).getAuthor());
         }
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder;
-        Reviews review = getItem(position);
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.review_list_item, parent, false);
-            viewHolder = new ViewHolder(convertView);
-            convertView.setTag(viewHolder);
-        }
-        viewHolder = (ViewHolder) convertView.getTag();
-        if (mReviewResult.get(position).getContent() != null) {
-            viewHolder.contentView.setText(mReviewResult.get(position).getContent());
-        }
-
-        if (review.getReviewsResults().get(position).getAuthor() != null) {
-            viewHolder.authorView.setText(review.getReviewsResults().get(position).getAuthor());
-        }
-        Log.v("Trailer Adapter", mReviewResult.get(position).getAuthor());
-
-        return convertView;
+    public int getItemCount() {
+        return mReviewResult.size();
     }
 
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+
+        @Bind(R.id.review_author) TextView authorView;
+        @Bind(R.id.review_content) TextView contentView;
+
+        ViewHolder(View view) {
+            super(view);
+            ButterKnife.bind(this, view);
+        }
+    }
 }

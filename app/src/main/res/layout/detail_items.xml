@@ -80,12 +80,15 @@
             android:text="Reviews"
             />
 
-        <ListView
-            android:id="@+id/trailersList"
+        <android.support.v7.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/reviewsList"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:textColor="#fff"
-            android:nestedScrollingEnabled="true"/>
+            android:layout_height="300dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" >
+        </android.support.v7.widget.RecyclerView>
+
 
         <TextView
             android:id="@+id/detail_movie_trailers_header"
@@ -94,11 +97,15 @@
             android:text="Trailers"
             />
 
-        <ListView
-            android:id="@+id/reviewsList"
+        <android.support.v7.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/trailersList"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:textColor="#fff"
-            android:nestedScrollingEnabled="true"/>
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" >
+        </android.support.v7.widget.RecyclerView>
+
+
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
