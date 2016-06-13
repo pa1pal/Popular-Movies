@@ -1,4 +1,4 @@
-package udacity.pawan.popularmoviesstage1.model;
+package udacity.pawan.popularmoviesstage1.model.pojos;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

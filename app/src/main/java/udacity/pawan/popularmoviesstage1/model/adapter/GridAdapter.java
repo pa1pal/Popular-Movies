@@ -15,7 +15,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import udacity.pawan.popularmoviesstage1.R;
-import udacity.pawan.popularmoviesstage1.model.Result;
+import udacity.pawan.popularmoviesstage1.model.pojos.Result;
 
 public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolder> {
 

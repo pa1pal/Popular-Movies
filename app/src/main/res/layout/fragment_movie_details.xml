@@ -43,6 +43,9 @@
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/detail_items"></include>
+
+
+
 </android.support.design.widget.CoordinatorLayout>
 
 

@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.google.gson.Gson;
 
 import udacity.pawan.popularmoviesstage1.R;
-import udacity.pawan.popularmoviesstage1.model.Result;
+import udacity.pawan.popularmoviesstage1.model.pojos.Result;
 import udacity.pawan.popularmoviesstage1.ui.fragments.MovieDetailsFragment;
 
 public class MovieDetails extends AppCompatActivity {

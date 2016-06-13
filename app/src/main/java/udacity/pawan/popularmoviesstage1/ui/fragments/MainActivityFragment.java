@@ -22,7 +22,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import udacity.pawan.popularmoviesstage1.R;
 import udacity.pawan.popularmoviesstage1.controller.ApiManager;
-import udacity.pawan.popularmoviesstage1.model.PopularMovies;
+import udacity.pawan.popularmoviesstage1.model.pojos.PopularMovies;
 import udacity.pawan.popularmoviesstage1.model.adapter.GridAdapter;
 import udacity.pawan.popularmoviesstage1.model.helper.RecyclerItemClickListner;
 import udacity.pawan.popularmoviesstage1.ui.MovieDetails;

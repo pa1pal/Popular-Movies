@@ -3,11 +3,9 @@ package udacity.pawan.popularmoviesstage1.model.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.List;
@@ -15,8 +13,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import udacity.pawan.popularmoviesstage1.R;
-import udacity.pawan.popularmoviesstage1.model.ReviewResults;
-import udacity.pawan.popularmoviesstage1.model.Reviews;
+import udacity.pawan.popularmoviesstage1.model.pojos.ReviewResults;
 
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder>{

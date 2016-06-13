@@ -1,4 +1,4 @@
-package udacity.pawan.popularmoviesstage1.model;
+package udacity.pawan.popularmoviesstage1.model.pojos;
 
 /**
  * Created by pa1pal on 6/10/16.
