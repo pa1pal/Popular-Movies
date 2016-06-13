@@ -48,6 +48,8 @@ public class Database extends SugarRecord {
     private Boolean video;
     private Double voteAverage;
 
+
+
     /**
      * @return The posterPath
      */

@@ -15,6 +15,9 @@ import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -22,9 +25,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import udacity.pawan.popularmoviesstage1.R;
 import udacity.pawan.popularmoviesstage1.controller.ApiManager;
+import udacity.pawan.popularmoviesstage1.model.pojos.Database;
 import udacity.pawan.popularmoviesstage1.model.pojos.PopularMovies;
 import udacity.pawan.popularmoviesstage1.model.adapter.GridAdapter;
 import udacity.pawan.popularmoviesstage1.model.helper.RecyclerItemClickListner;
+import udacity.pawan.popularmoviesstage1.model.pojos.Result;
 import udacity.pawan.popularmoviesstage1.ui.MovieDetails;
 
 public class MainActivityFragment extends Fragment implements RecyclerItemClickListner.OnItemClickListener {
@@ -104,27 +109,63 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
         return  new MainActivityFragment();
     }
 
+    public void loadFavoriteMovies() {
+
+        //TODO: not working
+        List<Database> listAll = Database.find(Database.class,null);
+
+        PopularMovies movies = new PopularMovies();
+        List<Result> movieResults = new ArrayList<>();
+        for (int i = 0; i < listAll.size(); i++) {
+            movieResults.add(parseObject(listAll.get(i)));
+        }
+        movies.setResults(movieResults);
+    }
+
+    public Database parseObject(Database movieResultSugar) {
+        return new Database(
+                movieResultSugar.getOriginalLanguage(),
+                movieResultSugar.getPosterPath(),
+                movieResultSugar.getAdult(),
+                movieResultSugar.getOverview(),
+                movieResultSugar.getReleaseDate(),
+                movieResultSugar.getMovieId(),
+                movieResultSugar.getOriginalTitle(),
+                movieResultSugar.getTitle(),
+                movieResultSugar.getBackdropPath(),
+                movieResultSugar.getPopularity(),
+                movieResultSugar.getVoteCount(),
+                movieResultSugar.getVideo(),
+                movieResultSugar.getVoteAverage());
+    }
+
     public void loadPopuparMovies(){
 
+        if (category.equals("favourite"))
+        {
+            gridAdapter = new GridAdapter(getActivity(), mPopularMovies.getResults());
+            mRecyclerView.setAdapter(gridAdapter);
+        }
 
-
-        apiManager =  new ApiManager();
-        Call<PopularMovies> popularMoviesCall = apiManager.getMovieService().getAllMovies(category);
-        popularMoviesCall.enqueue(new Callback<PopularMovies>() {
-            @Override
-            public void onResponse(Call<PopularMovies> call, Response<PopularMovies> response) {
-                if(response.isSuccessful()){
-                    mPopularMovies = response.body();
-                    gridAdapter = new GridAdapter(getActivity(),mPopularMovies.getResults());
-                    mRecyclerView.setAdapter(gridAdapter);
-                    Log.d(LOG_TAG,mPopularMovies.getResults().get(2).getOriginalTitle());
+        else {
+            apiManager = new ApiManager();
+            Call<PopularMovies> popularMoviesCall = apiManager.getMovieService().getAllMovies(category);
+            popularMoviesCall.enqueue(new Callback<PopularMovies>() {
+                @Override
+                public void onResponse(Call<PopularMovies> call, Response<PopularMovies> response) {
+                    if (response.isSuccessful()) {
+                        mPopularMovies = response.body();
+                        gridAdapter = new GridAdapter(getActivity(), mPopularMovies.getResults());
+                        mRecyclerView.setAdapter(gridAdapter);
+                        Log.d(LOG_TAG, mPopularMovies.getResults().get(2).getOriginalTitle());
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<PopularMovies> call, Throwable t) {
+                @Override
+                public void onFailure(Call<PopularMovies> call, Throwable t) {
 
-            }
-        });
+                }
+            });
+        }
     }
 }
