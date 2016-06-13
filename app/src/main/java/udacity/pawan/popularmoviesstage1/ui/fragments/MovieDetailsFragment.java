@@ -1,5 +1,9 @@
 package udacity.pawan.popularmoviesstage1.ui.fragments;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+import com.squareup.picasso.Picasso;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -13,10 +17,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.orm.query.Condition;
-import com.orm.query.Select;
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -27,12 +27,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import udacity.pawan.popularmoviesstage1.R;
 import udacity.pawan.popularmoviesstage1.controller.ApiManager;
+import udacity.pawan.popularmoviesstage1.model.adapter.ReviewAdapter;
+import udacity.pawan.popularmoviesstage1.model.adapter.TrailerAdapter;
 import udacity.pawan.popularmoviesstage1.model.pojos.Database;
 import udacity.pawan.popularmoviesstage1.model.pojos.Result;
 import udacity.pawan.popularmoviesstage1.model.pojos.Reviews;
 import udacity.pawan.popularmoviesstage1.model.pojos.Trailers;
-import udacity.pawan.popularmoviesstage1.model.adapter.ReviewAdapter;
-import udacity.pawan.popularmoviesstage1.model.adapter.TrailerAdapter;
 
 /**
  * Created by pa1pal on 27/4/16.
@@ -82,6 +82,7 @@ public class MovieDetailsFragment extends Fragment {
             type = getArguments().getInt("type", TYPE_LINEAR_LAYOUT);
         }
 
+
         mTrailers = new Trailers();
         mReviews = new Reviews();
     }
@@ -112,23 +113,26 @@ public class MovieDetailsFragment extends Fragment {
                 .where(Condition.prop("id_Movie_Result").eq(mMovieDetails.getId()));
         long numberQuery = Query.count();
 
-        if (numberQuery != 0) {
+        if (numberQuery == 0) {
             favouriteButton.setText("Add to database");
         } else {
             favouriteButton.setText("Remove from database");
         }
+
+
         return  rootview;
     }
 
 
     @OnClick(R.id.addtofavourite)
+
     public void saveToDB(){
         Select Query = Select.from(Database.class)
                 .where(Condition.prop("id_Movie_Result").eq(
                         mMovieDetails.getId())).limit("1");
         long numberQuery = Query.count();
 
-        if (numberQuery != 0) {
+        if (numberQuery == 0) {
             Database movieResult = new Database(
                     mMovieDetails.getPosterPath(),
                     mMovieDetails.getAdult(),

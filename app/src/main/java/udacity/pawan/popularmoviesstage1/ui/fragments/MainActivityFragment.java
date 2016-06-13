@@ -105,6 +105,9 @@ public class MainActivityFragment extends Fragment implements RecyclerItemClickL
     }
 
     public void loadPopuparMovies(){
+
+
+
         apiManager =  new ApiManager();
         Call<PopularMovies> popularMoviesCall = apiManager.getMovieService().getAllMovies(category);
         popularMoviesCall.enqueue(new Callback<PopularMovies>() {
